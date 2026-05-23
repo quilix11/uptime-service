@@ -1,5 +1,4 @@
-from pydantic import BaseModel
-
+from pydantic import BaseModel, ConfigDict
 
 class WebsiteCreate(BaseModel):
     url: str
@@ -12,3 +11,5 @@ class WebsiteOut(BaseModel):
     interval: int
     is_active: bool
     user_id: int
+
+    model_config = ConfigDict(from_attributes=True)
