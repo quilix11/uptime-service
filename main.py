@@ -1,11 +1,11 @@
-import asyncio
+import uvicorn
+from fastapi import FastAPI
 
-from services.monitoring import monitoring_and_save
+from api.url_add import app as url_router
 
+app = FastAPI(title="Uptime Service")
 
-async def main():
-    target_url = input("Write your link. Example: google.com")
-    await monitoring_and_save(target_url)
+app.include_router(url_router)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
